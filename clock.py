@@ -61,37 +61,37 @@ pen = Turtle()
 pen.speed(0) 
 pen.color("white")
 
-#number 1
+#number 11
 pen.penup()
 pen.hideturtle()
 pen.goto(165, 260)
-pen.write("1", align="center", font=("Algerian", 11, "bold"))
+pen.write("11", align="center", font=("Algerian", 11, "bold"))
 
-#number 2
+#number 10
 pen.penup()
 pen.hideturtle()
 pen.goto(290, 140)
-pen.write("2", align="center", font=("Algerian", 11, "bold"))
+pen.write("10", align="center", font=("Algerian", 11, "bold"))
 
-#number 3
+#number 9
 pen.penup()
 pen.hideturtle()
 pen.goto(340, -30)
-pen.write("3", align="center", font=("Algerian", 11, "bold"))
+pen.write("9", align="center", font=("Algerian", 11, "bold"))
 
 
-#number 4
+#number 8
 pen.penup()
 pen.hideturtle()
 pen.goto(300, -200)
-pen.write("4", align="center", font=("Algerian", 11, "bold"))
+pen.write("8", align="center", font=("Algerian", 11, "bold"))
 
 
-#number 5
+#number 7
 pen.penup()
 pen.hideturtle()
 pen.goto(170, -325)
-pen.write("5", align="center", font=("Algerian", 11, "bold"))
+pen.write("7", align="center", font=("Algerian", 11, "bold"))
 
 
 #number 6
@@ -101,35 +101,35 @@ pen.goto(0, -370)
 pen.write("6", align="center", font=("Algerian", 11, "bold"))
 
 
-#number 7
+#number 5
 pen.penup()
 pen.hideturtle()
 pen.goto(-170, -325)
-pen.write("7", align="center", font=("Algerian", 11, "bold"))
+pen.write("5", align="center", font=("Algerian", 11, "bold"))
 
-#number 8
+#number 4
 pen.penup()
 pen.hideturtle()
 pen.goto(-300, -200)
-pen.write("8", align="center", font=("Algerian", 11, "bold"))
+pen.write("4", align="center", font=("Algerian", 11, "bold"))
 
-#number 9 
+#number 3 
 pen.penup()
 pen.hideturtle()
 pen.goto(-340, -30)
-pen.write("9", align="center", font=("Algerian", 11, "bold"))
+pen.write("3", align="center", font=("Algerian", 11, "bold"))
 
-#number 10
+#number 2
 pen.penup()
 pen.hideturtle()
 pen.goto(-280, 140)
-pen.write("10", align="center", font=("Algerian", 11, "bold"))
+pen.write("2", align="center", font=("Algerian", 11, "bold"))
 
-#number 11
+#number 1
 pen.penup()
 pen.hideturtle()
 pen.goto(-160, 260)
-pen.write("11", align="center", font=("Algerian", 11, "bold"))
+pen.write("1", align="center", font=("Algerian", 11, "bold"))
 
 #number 12
 pen.penup()
@@ -140,27 +140,36 @@ pen.write("12", align="center", font=("Algerian", 11, "bold"))
 #Defining function to movie hour hand
 def movehHand():
     currentHourInternal = datetime.datetime.now().hour
-    degree = (currentHourInternal - 15) * -30
+    degree = (currentHourInternal + 15) * 30
     currentMinutelnternal = datetime.datetime.now().minute
-    degree = degree + -0.5 * currentMinutelnternal
+    degree = degree + 0.5 * currentMinutelnternal
     hHand.setheading(degree)
     window.ontimer(movehHand, 60000)
 
 #Defining function to minute hand
 def movemHand():
     currentMinutelnternal = datetime.datetime.now().minute
-    degree = (currentMinutelnternal -15) * -6
+    degree = (currentMinutelnternal +15) * 6
     currentSecondInternal = datetime.datetime.now().second
-    degree = degree + (-currentSecondInternal * 0.1)
+    degree = degree + (currentSecondInternal * 0.1)
     mHand.setheading(degree)
     window.ontimer(movemHand, 1000)
 
 #Defining function to second hand
 def movesHand():
     currentSecondInternal = datetime.datetime.now().second
-    degree = (currentSecondInternal - 15) * -6
+    degree = (currentSecondInternal + 15) * 6
     sHand.setheading(degree)
     window.ontimer(movesHand, 1000)
+    print(currentSecondInternal)
+    
+# Function to display current time
+def display_time():
+    current_time = datetime.datetime.now().strftime("%I:%M:%S %p") # Format: HH:MM:SS AM/PM
+    pen.clear()  # Clear previous time
+    pen.goto(0, -380)  # Position pen to display time
+    pen.write(current_time, align="center", font=("Algerian", 20, "bold"))
+    window.ontimer(display_time, 1000)  # Update time every second
 
 
 window.ontimer(movehHand, 1)
